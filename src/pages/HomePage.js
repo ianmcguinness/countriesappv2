@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation, useHistory } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import axios from 'axios'
 import queryString from 'query-string'
@@ -14,7 +14,6 @@ const HomePage = () => {
   const [allCountries, setAllCountries] = useState([])
   const [filteredCountries, setFilteredCountries] = useState(allCountries)
   const location = useLocation()
-  const history = useHistory()
 
   const { isLoading } = useQuery(
     'countries',
@@ -30,24 +29,28 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [continent, setContinent] = useState('All')
   const resultsPerPage = 16
-  
-  const slicedCountries = filteredCountries?.slice(resultsPerPage * (page - 1), resultsPerPage * page)
+
+  const slicedCountries = filteredCountries?.slice(
+    resultsPerPage * (page - 1),
+    resultsPerPage * page
+  )
   const maxPages = Math.ceil(filteredCountries?.length / resultsPerPage)
+
+  useEffect(() => {
+    setFilteredCountries(
+      allCountries.filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    )
+  }, [searchTerm, allCountries])
 
   useEffect(() => {
     if (location.search) {
       const pageNo = +queryString.parse(location.search)['page']
       if (pageNo < 1 || pageNo > maxPages) {
-        history.push('/')
         return setPage(1)
       }
       setPage(pageNo)
     }
-  }, [page, location, history, maxPages])
-
-  useEffect(() => {
-    setFilteredCountries(allCountries.filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase())))
-  }, [searchTerm, allCountries])
+  }, [location, maxPages])
 
   useEffect(() => {
     if (continent === 'All') return setFilteredCountries(allCountries)
