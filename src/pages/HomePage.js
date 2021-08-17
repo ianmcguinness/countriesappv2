@@ -37,6 +37,10 @@ const HomePage = () => {
   const maxPages = Math.ceil(filteredCountries?.length / resultsPerPage)
 
   useEffect(() => {
+    document.title = 'Countries App'
+  })
+
+  useEffect(() => {
     setFilteredCountries(
       allCountries.filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase()))
     )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import axios from 'axios'
@@ -19,13 +19,17 @@ const CountryDetail = () => {
     return await axios.get(`https://restcountries.eu/rest/v2/alpha/${code}`)
   })
 
+  useEffect(() => {
+    document.title = country ? country.data.name : 'Countries App'
+  }, [country, isLoading])
+
   if (isLoading) return <ImSpinner2 color='#fff' size='3rem' />
   if (isError)
     return (
       <div className='error-screen'>
         <div className='back-btn'>
-        <Button icon='back' text='Back' page='1' handleClick={history.goBack} />
-      </div>
+          <Button icon='back' text='Back' page='1' handleClick={history.goBack} />
+        </div>
         <h1 className='error-message'>Sorry there was an error</h1>
       </div>
     )
