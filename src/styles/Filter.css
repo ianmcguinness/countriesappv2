@@ -1,0 +1,39 @@
+.Filter {
+    background-color: #2b3945;
+    color: #fff;
+    position: relative;
+}
+
+.filter-tab {
+    width: 12rem;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    transition: 0.3s;
+}
+
+.filter-tab:hover {
+    background-color: #526c84;
+    cursor: pointer;
+}
+
+.filter-options {
+    list-style: none;
+    position: absolute;
+    background-color: #2b3945;
+    color: #fff;
+    width: 12rem;
+}
+
+.filter-option {
+    height: 3rem;
+    padding: 1rem;
+    transition: 0.3s;
+}
+
+.filter-option:hover {
+    background-color: #526c84;
+    cursor: pointer;
+}

@@ -1,0 +1,12 @@
+.BorderCountry {
+    background-color: #2b3945;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    transition: 0.3s;
+}
+
+.BorderCountry:hover {
+    background-color: #526c84;
+    cursor: pointer;
+}

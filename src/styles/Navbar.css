@@ -1,0 +1,17 @@
+.Navbar {
+    height: 4rem;
+    background-color: #2b3945;
+    padding: 0 6rem;
+}
+
+.Navbar a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.Navbar h2 {
+    margin-left: 1rem;
+    color: #fff;
+    font-size: 18px;
+}
